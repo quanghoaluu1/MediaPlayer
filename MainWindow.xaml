@@ -20,23 +20,32 @@
             <ColumnDefinition Width="71*"/>
             <ColumnDefinition Width="622*"/>
         </Grid.ColumnDefinitions>
-        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual" UnloadedBehavior="Stop" HorizontalAlignment="Left" Height="252" Margin="33,0,0,0" VerticalAlignment="Top" Width="657" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="2"/>
-        <StackPanel x:Name="stackPanel" Margin="27,123,0,0" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <Button x:Name="btn_play" Height="25" Width="223" Click="btn_play_Click">
-                <materialDesign:PackIcon Name="PlayStopIcon" Kind="Play"/>
+        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual"  HorizontalAlignment="Left" Height="252" Margin="33,0,0,0" VerticalAlignment="Top" Width="657" Grid.RowSpan="3" Grid.Column="3" Grid.ColumnSpan="2"/>
+        <StackPanel x:Name="stackPanel" Margin="33,123,-6,0" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Orientation="Horizontal">
+            <Button Click="btn_rewind5s_Click">
+                <materialDesign:PackIcon x:Name="back5sIcon" Kind="Rewind5"/>
             </Button>
-            <Button x:Name="btn_pause" Content="Pause" Height="25" Width="228" Click="btn_pause_Click"/>
+            <Button x:Name="btn_playPause" Height="25" Width="223" Click="btn_playPause_Click">
+                <materialDesign:PackIcon x:Name="PlayPauseIcon" Kind="Pause"/>
+            </Button>
+            <Button x:Name="btn_stop" Height="25" Width="228" Click="btn_stop_Click">
+                <materialDesign:PackIcon x:Name="StopIcon" Kind="Stop"/>
+            </Button>
+            <Button Click="btn_forward5s_Click" >
+                <materialDesign:PackIcon x:Name="forward5sIcon" Kind="FastForward5"/>
+            </Button>
         </StackPanel>
-        <Slider x:Name="slider_timeSlider" Minimum="0" Maximum= "{Binding ElementName=mediaPlayer, Path=NaturalDuration.TimeSpan.TotalSeconds}" HorizontalAlignment="Left" Margin="83,77,0,0" VerticalAlignment="Top" Width="411" ValueChanged="seekSlider_ValueChanged" Grid.Row="2" Grid.Column="4"/>
-        <ListView Grid.ColumnSpan="4" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,0,43,0" Grid.RowSpan="3" SelectionChanged="ListView_SelectionChanged" Background="#FF3D3B3B">
+        <Slider x:Name="slider_timeSlider" Minimum="0" Maximum= "{Binding ElementName=mediaPlayer, Path=NaturalDuration.TimeSpan.TotalSeconds}" HorizontalAlignment="Left" Margin="16,141,0,0" VerticalAlignment="Top" Width="412" ValueChanged="seekSlider_ValueChanged" Grid.Row="2" Grid.Column="4"/>
+        <ListView Grid.ColumnSpan="4" Margin="0,0,43,0" Grid.RowSpan="3" SelectionChanged="ListView_SelectionChanged" Background="#FF3D3B3B">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            <Button x:Name="addFile_btn" Content="Add file" Width="98" Height="43" Click="addFile_Click"/>
         </ListView>
-        <TextBlock x:Name="totalTime" HorizontalAlignment="Left" Margin="512,78,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Grid.Column="4"/>
-        <TextBlock x:Name="currentTime" HorizontalAlignment="Left" Margin="15,78,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Grid.Column="4"/>
+        <TextBlock x:Name="totalTime" Foreground="White" HorizontalAlignment="Left" Margin="446,143,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Grid.Column="4" RenderTransformOrigin="-0.312,1.928"/>
+        <TextBlock x:Name="currentTime" Foreground="White"  HorizontalAlignment="Left" Margin="35,143,0,0" Grid.Row="2" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" Grid.Column="3" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

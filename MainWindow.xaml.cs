@@ -1,4 +1,5 @@
 ﻿using LibVLCSharp.Shared;
+using Microsoft.Win32;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +21,7 @@ namespace MediaPlayer
     {
         DispatcherTimer timer;
         bool isPaused = false;
-        bool isStoped = false;
+        bool isStoped = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -29,22 +30,21 @@ namespace MediaPlayer
             timer.Tick += Timer_Tick; 
         }
 
-        private void btn_play_Click(object sender, RoutedEventArgs e)
+        private void btn_playPause_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayer.Source = new Uri("C:\\Users\\quang\\Desktop\\MediaPlayer\\MediaPlayer\\spider-man.mp4");
-            if(isStoped)
+            if(isPaused || isStoped)
             {
-                mediaPlayer.Stop();
-                PlayStopIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
-                isStoped = false;
-                timer.Stop();
+                mediaPlayer.Play();
+                PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
+                isPaused = false;
+                timer.Start();
             }
             else
             {
-                mediaPlayer.Play();
-                PlayStopIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
-                isStoped = true;
-                timer.Start();
+                mediaPlayer.Pause();
+                PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                isPaused = true;
+                timer.Stop();
             }
             
             
@@ -53,25 +53,16 @@ namespace MediaPlayer
 
         private void btn_pause_Click(object sender, RoutedEventArgs e)
         {
-            if (isPaused)
-            {
-                mediaPlayer.Play();
-                btn_pause.Content = "Pause";
-                isPaused = false;
-            }
-            else
-            {
-                mediaPlayer.Pause();
-                btn_pause.Content = "Resume";
-                isPaused = true;
-            }
-
+            
 
         }
 
         private void btn_stop_Click(object sender, RoutedEventArgs e)
         {
+            PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
             mediaPlayer.Stop();
+            isStoped = true;
+            timer.Stop();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -96,6 +87,51 @@ namespace MediaPlayer
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+        }
+
+        private void addFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Video File|*.mp4"
+            };
+            if(openFileDialog.ShowDialog() == true)
+            {
+                mediaPlayer.Source = new Uri(openFileDialog.FileName);
+                mediaPlayer.Play();
+                timer.Start();
+            }
+        }
+
+
+        private void btn_forward5s_Click(object sender, RoutedEventArgs e)
+        {
+            if (mediaPlayer.NaturalDuration.HasTimeSpan)
+            {
+                TimeSpan timeSpan = mediaPlayer.NaturalDuration.TimeSpan;
+                if(mediaPlayer.Position.TotalSeconds + 5 < timeSpan.TotalSeconds)
+                {
+                    mediaPlayer.Position = mediaPlayer.Position.Add(TimeSpan.FromSeconds(5));
+                }
+                else
+                {
+                    mediaPlayer.Position = timeSpan;
+                }
+            }
+
+        }
+
+        private void btn_rewind5s_Click(object sender, RoutedEventArgs e)
+        {
+            if(mediaPlayer.Position.TotalSeconds > 5)
+            {
+                mediaPlayer.Position = mediaPlayer.Position.Subtract(TimeSpan.FromSeconds(5));
+            }
+            else
+            {
+                mediaPlayer.Position = TimeSpan.Zero;
+            }
 
         }
     }

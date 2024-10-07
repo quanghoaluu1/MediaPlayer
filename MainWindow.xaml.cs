@@ -30,20 +30,20 @@ namespace MediaPlayer
             timer.Tick += Timer_Tick; 
         }
 
-        private void btn_playPause_Click(object sender, RoutedEventArgs e)
+        private void Btn_playPause_Click(object sender, RoutedEventArgs e)
         {
             if(playerState == PlayerState.PLAYING)
             {
-               changePlayerState(PlayerState.PAUSED);
+               ChangePlayerState(PlayerState.PAUSED);
             }
             else
             {
-                changePlayerState(PlayerState.PLAYING);
+                ChangePlayerState(PlayerState.PLAYING);
             }
             
         }
 
-        private void changePlayerState(PlayerState state)
+        private void ChangePlayerState(PlayerState state)
         {
             playerState = state;
             switch (state)
@@ -67,15 +67,10 @@ namespace MediaPlayer
             }
         }
 
-        private void btn_pause_Click(object sender, RoutedEventArgs e)
-        {
-            
 
-        }
-
-        private void btn_stop_Click(object sender, RoutedEventArgs e)
+        private void Btn_stop_Click(object sender, RoutedEventArgs e)
         {
-            changePlayerState(PlayerState.STOPPED);
+            ChangePlayerState(PlayerState.STOPPED);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -89,7 +84,7 @@ namespace MediaPlayer
                 totalTime.Text = mediaPlayer.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss");
             }
         }
-        private void seekSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void SeekSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (mediaPlayer.NaturalDuration.HasTimeSpan)
             {
@@ -103,22 +98,41 @@ namespace MediaPlayer
 
         }
 
-        private void addFile_Click(object sender, RoutedEventArgs e)
+        private void AddFile_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Video Files (*.mp4)|*.mp4|Audio Files (*.mp3)|*.mp3|All Files (*.*)|*.*";
+
+
+            if (openFileDialog.ShowDialog() == true)
             {
-                Filter = "Video File|*.mp4"
-            };
-            if(openFileDialog.ShowDialog() == true)
-            {
+                string filePath = openFileDialog.FileName;
+                string fileExtension = System.IO.Path.GetExtension(filePath).ToLower();
+
                 mediaPlayer.Source = new Uri(openFileDialog.FileName);
-                mediaPlayer.Play();
+                fileNameTextBlock.Text = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                if (fileExtension == ".mp3")
+                {
+                    mediaPlayer.Visibility = Visibility.Collapsed;
+                    image_audioImage.Visibility = Visibility.Visible;
+
+                    
+                    
+                    mediaPlayer.Play();
+                }
+                else if(fileExtension == ".mp4")
+                {
+                    mediaPlayer.Visibility = Visibility.Visible;
+                    image_audioImage.Visibility= Visibility.Collapsed;
+
+                    mediaPlayer.Play();
+                }
                 timer.Start();
             }
         }
 
 
-        private void btn_forward5s_Click(object sender, RoutedEventArgs e)
+        private void Btn_forward5s_Click(object sender, RoutedEventArgs e)
         {
             if (mediaPlayer.NaturalDuration.HasTimeSpan)
             {
@@ -135,7 +149,7 @@ namespace MediaPlayer
 
         }
 
-        private void btn_rewind5s_Click(object sender, RoutedEventArgs e)
+        private void Btn_rewind5s_Click(object sender, RoutedEventArgs e)
         {
             if(mediaPlayer.Position.TotalSeconds > 5)
             {
@@ -148,7 +162,7 @@ namespace MediaPlayer
 
         }
 
-        private void slider_volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void Slider_volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             mediaPlayer.Volume = slider_volumeSlider.Value;
         }

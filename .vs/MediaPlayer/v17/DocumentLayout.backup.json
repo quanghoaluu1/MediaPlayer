@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{59D2572D-FC83-4DA7-ABF2-1C9C8A07F3A2}|MediaPlayer.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{59D2572D-FC83-4DA7-ABF2-1C9C8A07F3A2}|MediaPlayer.csproj|c:\\users\\admin\\desktop\\mediaplayer\\mediaplayer\\playerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{59D2572D-FC83-4DA7-ABF2-1C9C8A07F3A2}|MediaPlayer.csproj|solutionrelative:playerstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{59D2572D-FC83-4DA7-ABF2-1C9C8A07F3A2}|MediaPlayer.csproj|c:\\users\\admin\\desktop\\mediaplayer\\mediaplayer\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{59D2572D-FC83-4DA7-ABF2-1C9C8A07F3A2}|MediaPlayer.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -22,11 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "PlayerState.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\PlayerState.cs",
+              "RelativeDocumentMoniker": "PlayerState.cs",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\PlayerState.cs",
+              "RelativeToolTip": "PlayerState.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T11:13:15.521Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -42,16 +59,16 @@
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAywIQAAAA1AAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\MainWindow.xaml.cs*",
+              "RelativeToolTip": "MainWindow.xaml.cs*",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAiwCgAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-04T10:50:20.668Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\Users\\Admin\\Desktop\\MediaPlayer\\MediaPlayer\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "AssemblyInfo.cs",

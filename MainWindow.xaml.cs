@@ -20,8 +20,8 @@ namespace MediaPlayer
     public partial class MainWindow : Window
     {
         DispatcherTimer timer;
-        bool isPaused = false;
-        bool isStoped = true;
+        
+        PlayerState playerState = PlayerState.PLAYING ;
         public MainWindow()
         {
             InitializeComponent();
@@ -32,23 +32,39 @@ namespace MediaPlayer
 
         private void btn_playPause_Click(object sender, RoutedEventArgs e)
         {
-            if(isPaused || isStoped)
+            if(playerState == PlayerState.PLAYING)
             {
-                mediaPlayer.Play();
-                PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
-                isPaused = false;
-                timer.Start();
+               changePlayerState(PlayerState.PAUSED);
             }
             else
             {
-                mediaPlayer.Pause();
-                PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
-                isPaused = true;
-                timer.Stop();
+                changePlayerState(PlayerState.PLAYING);
             }
             
-            
+        }
 
+        private void changePlayerState(PlayerState state)
+        {
+            playerState = state;
+            switch (state)
+            {
+                case PlayerState.PLAYING:
+                    mediaPlayer.Play();
+                    PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Pause;
+                    timer.Start();
+                    break;
+                case PlayerState.PAUSED:
+                    PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                    mediaPlayer.Pause();
+                    timer.Stop();
+                    break;
+                case PlayerState.STOPPED:
+                    PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
+                    mediaPlayer.Stop();
+                    timer.Stop();
+                    break;
+
+            }
         }
 
         private void btn_pause_Click(object sender, RoutedEventArgs e)
@@ -59,10 +75,7 @@ namespace MediaPlayer
 
         private void btn_stop_Click(object sender, RoutedEventArgs e)
         {
-            PlayPauseIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Play;
-            mediaPlayer.Stop();
-            isStoped = true;
-            timer.Stop();
+            changePlayerState(PlayerState.STOPPED);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -133,6 +146,11 @@ namespace MediaPlayer
                 mediaPlayer.Position = TimeSpan.Zero;
             }
 
+        }
+
+        private void slider_volumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mediaPlayer.Volume = slider_volumeSlider.Value;
         }
     }
 }

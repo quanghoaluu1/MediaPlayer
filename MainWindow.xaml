@@ -3,73 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="666" Width="1008
         " Background="#FF222121"  WindowStartupLocation="CenterScreen">
 
+
     <Grid>
-        <!-- Menu-->
-        <ListView Margin="0,-10,875,0" SelectionChanged="ListView_SelectionChanged" Background="#FF3D3B3B">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-            <Button x:Name="addFile_btn" Content="Add file" Width="98" Height="42" Click="AddFile_Click"/>
-        </ListView>
-
-        <!-- Media Player-->
-        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual"  HorizontalAlignment="Left" Height="474" Margin="147,10,0,0" VerticalAlignment="Top" Width="859"/>
-
-        <!-- Rewind Button-->
-        <Button Click="Btn_rewind5s_Click" Margin="147,557,745,41">
-            <materialDesign:PackIcon x:Name="back5sIcon" Kind="Rewind5"/>
-        </Button>
-
-        <!-- Play and Pause Button-->
-        <Button x:Name="btn_playPause" Click="Btn_playPause_Click" Margin="263,557,629,41">
-            <materialDesign:PackIcon x:Name="PlayPauseIcon" Kind="Pause"/>
-        </Button>
-
-        <!-- Stop Button-->
-        <Button x:Name="btn_stop" Click="Btn_stop_Click" Margin="376,557,516,41">
-            <materialDesign:PackIcon x:Name="StopIcon" Kind="Stop"/>
-        </Button>
-
-        <!-- Forward Button-->
-        <Button Click="Btn_forward5s_Click" Margin="489,557,403,41" >
-            <materialDesign:PackIcon x:Name="forward5sIcon" Kind="FastForward5"/>
-        </Button>
-
-        <!-- Volume Change-->
-        <materialDesign:PackIcon x:Name="volume" Kind="VolumeSource" Height="41" Width="55" RenderTransformOrigin="0.554,1.394" Margin="605,558,0,0"/>
-        <Slider x:Name="slider_volumeSlider" Margin="667,567,63,42" Minimum="0" Maximum="1" Value="0.5" ValueChanged="Slider_volumeSlider_ValueChanged" RenderTransformOrigin="0.5,0.5">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.009"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
-
-        <!-- Time Slider-->
-        <Slider x:Name="slider_timeSlider" Minimum="0" Maximum= "{Binding ElementName=mediaPlayer, Path=NaturalDuration.TimeSpan.TotalSeconds}" HorizontalAlignment="Left" Margin="255,497,0,0" VerticalAlignment="Top" Width="590" ValueChanged="SeekSlider_ValueChanged"/>
-        <TextBlock x:Name="totalTime" Foreground="White" FontSize="24" HorizontalAlignment="Left" Margin="870,491,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" RenderTransformOrigin="-0.312,1.928"/>
-        <TextBlock x:Name="currentTime" Foreground="White" FontSize="24"  HorizontalAlignment="Left" Margin="147,491,0,0" TextWrapping="Wrap" Text="00:00:00" VerticalAlignment="Top" RenderTransformOrigin="3.266,14.414" Width="108" Height="26"/>
-
-
-        <!-- Audio Image-->
-        <Image x:Name="image_audioImage" Source="C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\Spider-man-Music.jpg"
-               HorizontalAlignment="Left" Height="474" Margin="147,10,0,0" VerticalAlignment="Top" Width="859" Grid.ColumnSpan="4"
-               Visibility="Collapsed" />
-        <!-- Title -->
-        <TextBlock Name="fileNameTextBlock" Text="" FontSize="16" FontWeight="Bold" 
-               Foreground="White"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="147,528,0,0" Width="811" />
-
+        <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 
 </Window>

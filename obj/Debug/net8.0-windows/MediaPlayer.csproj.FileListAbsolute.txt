@@ -26,3 +26,15 @@ C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\refint\M
 C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\MediaPlayer.pdb
 C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\MediaPlayer.genruntimeconfig.cache
 C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\ref\MediaPlayer.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\MainPage.g.cs
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\MainPage.baml
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\PlaylistPage.g.cs
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\obj\Debug\net8.0-windows\PlaylistPage.baml
+C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\bin\Debug\net8.0-windows\Newtonsoft.Json.dll

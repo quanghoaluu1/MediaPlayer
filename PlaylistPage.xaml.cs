@@ -111,8 +111,33 @@ namespace MediaPlayer
             cm.Items.Add(addFileItem);
 
             cm.IsOpen = true;
+
+            
         }
 
+        private void playlist_lbox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            string selectedPlaylist = playlist_lbox.SelectedItem as string;
+            if (!string.IsNullOrEmpty(selectedPlaylist) && PlaylistManager.Playlist.ContainsKey(selectedPlaylist))
+            {
+                currentPlaylist = selectedPlaylist;
+                fileList_lbox.ItemsSource = PlaylistManager.Playlist[selectedPlaylist];
+            }
+        }
 
+        private void fileList_lbox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(fileList_lbox.SelectedItems == null) { return; }
+            else
+            {
+                string selectedFile = fileList_lbox.SelectedItem as string;
+                if (!string.IsNullOrEmpty(selectedFile))
+                {
+                    MessageBox.Show(selectedFile);
+                    MainPage mainPage = new MainPage(selectedFile);
+                    this.NavigationService.Navigate(mainPage);
+                }
+            }         
+        }
     }
 }

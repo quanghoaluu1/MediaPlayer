@@ -35,6 +35,17 @@ namespace MediaPlayer
             timer.Tick += Timer_Tick;
         }
 
+        public MainPage(string filePath)
+        {
+            InitializeComponent();
+            mediaPlayer.Source = new Uri(filePath);
+            mediaPlayer.Play();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(500);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
+
         private void OnDataAvailable(object sender, WaveInEventArgs e)
         {
 

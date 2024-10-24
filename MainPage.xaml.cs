@@ -1,18 +1,5 @@
-﻿using NAudio.Wave;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using Microsoft.Win32;
 
@@ -38,17 +25,36 @@ namespace MediaPlayer
         public MainPage(string filePath)
         {
             InitializeComponent();
-            mediaPlayer.Source = new Uri(filePath);
-            mediaPlayer.Play();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(500);
             timer.Tick += Timer_Tick;
-            timer.Start();
+
+            string fileExtension = System.IO.Path.GetExtension(filePath).ToLower();
+            this.PlayMedia(filePath, fileExtension);
         }
 
-        private void OnDataAvailable(object sender, WaveInEventArgs e)
+        private void PlayMedia(string filePath, string fileExtension)
         {
+            mediaPlayer.Source = new Uri(filePath);
+            fileNameTextBlock.Text = System.IO.Path.GetFileNameWithoutExtension(filePath);
 
+            if (fileExtension == ".mp3")
+            {
+                mediaPlayer.Visibility = Visibility.Collapsed;
+                image_audioImage.Visibility = Visibility.Visible;
+
+
+
+                mediaPlayer.Play();
+            }
+            else if (fileExtension == ".mp4")
+            {
+                mediaPlayer.Visibility = Visibility.Visible;
+                image_audioImage.Visibility = Visibility.Collapsed;
+
+                mediaPlayer.Play();
+            }
+            timer.Start();
         }
 
         private void Btn_playPause_Click(object sender, RoutedEventArgs e)
@@ -131,25 +137,7 @@ namespace MediaPlayer
                 string filePath = openFileDialog.FileName;
                 string fileExtension = System.IO.Path.GetExtension(filePath).ToLower();
 
-                mediaPlayer.Source = new Uri(openFileDialog.FileName);
-                fileNameTextBlock.Text = System.IO.Path.GetFileNameWithoutExtension(filePath);
-                if (fileExtension == ".mp3")
-                {
-                    mediaPlayer.Visibility = Visibility.Collapsed;
-                    image_audioImage.Visibility = Visibility.Visible;
-
-
-
-                    mediaPlayer.Play();
-                }
-                else if (fileExtension == ".mp4")
-                {
-                    mediaPlayer.Visibility = Visibility.Visible;
-                    image_audioImage.Visibility = Visibility.Collapsed;
-
-                    mediaPlayer.Play();
-                }
-                timer.Start();
+                this.PlayMedia(filePath, fileExtension);
             }
         }
 

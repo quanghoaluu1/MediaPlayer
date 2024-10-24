@@ -5,29 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MediaPlayer"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1000"
          Height="600" Width="1000"
 
       Title="PlaylistPage">
 
     <Grid>
         <!--Playlist list box-->
-        <ListBox x:Name="playlist_lbox" d:ItemsSource="{Binding playlistItems}" Margin="0,60,679,0" MouseRightButtonUp="playlist_lbox_MouseRightButtonUp" MouseLeftButtonUp="playlist_lbox_MouseLeftButtonUp">
+        <ListBox x:Name="playlist_lbox" d:ItemsSource="{Binding playlistItems}" Margin="0,60,766,0" MouseRightButtonUp="playlist_lbox_MouseRightButtonUp" MouseLeftButtonUp="playlist_lbox_MouseLeftButtonUp">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0"/>
+                    <TextBlock Text="{Binding}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" TextWrapping="Wrap"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         
         <!--Items in playlist-->
-        <ListBox x:Name="fileList_lbox" MouseLeftButtonUp="fileList_lbox_MouseLeftButtonUp" Margin="126,60,10,0"/>
+        <ListBox x:Name="fileList_lbox" MouseLeftButtonUp="fileList_lbox_MouseLeftButtonUp" Margin="239,60,10,0"/>
 
         <!--Return button-->
         <Button x:Name="return_btn" Content="Return" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Height="55" Width="75" Click="return_btn_Click"/>
         
         <!--Add playlist button-->
-        <Button x:Name="createPlaylist_btn" Content="Create new Playlist" HorizontalAlignment="Left" Margin="124,23,0,0" VerticalAlignment="Top" Click="createPlaylist_btn_Click"/>
+        <Button x:Name="createPlaylist_btn" Content="Create new Playlist" HorizontalAlignment="Left" Margin="83,23,0,0" VerticalAlignment="Top" Click="createPlaylist_btn_Click"/>
         
     </Grid>
 </Page>

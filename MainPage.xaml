@@ -27,7 +27,7 @@
         </ListView>
 
         <!-- Media Player-->
-        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual"  HorizontalAlignment="Left" Height="374" Margin="124,0,0,0" VerticalAlignment="Top" Width="839" Grid.Column="1"/>
+        <MediaElement x:Name="mediaPlayer" LoadedBehavior="Manual"  HorizontalAlignment="Left" Height="374" Width="839" Margin="124,0,0,0" VerticalAlignment="Top"  Grid.Column="1"/>
 
         <!-- Rewind Button-->
         <Button Click="Btn_rewind5s_Click" Margin="124,506,755,52" Grid.Column="1">
@@ -35,24 +35,24 @@
         </Button>
 
         <!-- Play and Pause Button-->
-        <Button x:Name="btn_playPause" Click="Btn_playPause_Click" Margin="221,506,658,52" Grid.Column="1">
+        <Button x:Name="btn_playPause" Click="Btn_playPause_Click" Margin="214,506,665,52" Grid.Column="1">
             <materialDesign:PackIcon x:Name="PlayPauseIcon" Kind="Pause"/>
         </Button>
 
         <!-- Stop Button-->
-        <Button x:Name="btn_stop" Click="Btn_stop_Click" Margin="311,506,570,52" Grid.Column="1">
+        <Button x:Name="btn_stop" Click="Btn_stop_Click" Margin="304,506,577,52" Grid.Column="1">
             <materialDesign:PackIcon x:Name="StopIcon" Kind="Stop"/>
         </Button>
 
         <!-- Forward Button-->
-        <Button Click="Btn_forward5s_Click" Margin="399,506,482,52" Grid.Column="1" >
+        <Button Click="Btn_forward5s_Click" Margin="392,506,489,52" Grid.Column="1" >
 
             <materialDesign:PackIcon x:Name="forward5sIcon" Kind="FastForward5"/>
         </Button>
 
         <!-- Volume Change-->
         <materialDesign:PackIcon x:Name="volume" Kind="VolumeSource" Height="44" Width="67" RenderTransformOrigin="0.554,1.394" Margin="487,500,0,0" Grid.Column="1"/>
-        <Slider x:Name="slider_volumeSlider" Margin="554,510,83,56" Minimum="0" Maximum="1" Value="0.5" ValueChanged="Slider_volumeSlider_ValueChanged"  Grid.Column="1">
+        <Slider x:Name="slider_volumeSlider" Margin="554,510,83,56" Minimum="0" Maximum="1" Value="0.5" ValueChanged="Slider_volumeSlider_ValueChanged"  Grid.Column="1" RenderTransformOrigin="0.361,0.764">
 
         </Slider>
 
@@ -63,7 +63,7 @@
 
         <!-- Audio Image-->
         <Image x:Name="image_audioImage" Source="C:\Users\Admin\Desktop\MediaPlayer\MediaPlayer\Spider-man-Music.jpg"
-       HorizontalAlignment="Left" Height="474" Margin="126,10,0,0" VerticalAlignment="Top" Width="859"
+       HorizontalAlignment="Left" Height="374" Margin="126,10,0,0" VerticalAlignment="Top" Width="839"
        Visibility="Collapsed" Grid.Column="1" />
         <!-- Title -->
         <TextBlock Name="fileNameTextBlock" Text="" FontSize="16" FontWeight="Bold" 

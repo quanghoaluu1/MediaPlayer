@@ -50,21 +50,9 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "LibVLCSharp": {
-              "target": "Package",
-              "version": "[3.9.0, )"
-            },
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[5.1.0, )"
-            },
-            "NAudio": {
-              "target": "Package",
-              "version": "[2.2.1, )"
-            },
-            "NAudio.Core": {
-              "target": "Package",
-              "version": "[2.2.1, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

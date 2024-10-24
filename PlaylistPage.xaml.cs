@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -48,7 +49,7 @@ namespace MediaPlayer
         {
             if (playlist_lbox.SelectedItem != null)
             {
-                string selectedPlaylist = playlist_lbox.SelectedItem.ToString();
+                string selectedPlaylist = playlist_lbox.SelectedItem as string;
                 PlaylistItems.Remove(selectedPlaylist);
                 PlaylistManager.Playlist.Remove(selectedPlaylist);
                 PlaylistManager.SavePlaylist();
@@ -57,7 +58,7 @@ namespace MediaPlayer
 
         private void playlist_lbox_MouseRightButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            string selectedPlaylist = playlist_lbox.SelectedItem.ToString();
+            string selectedPlaylist = playlist_lbox.SelectedItem as string;
             if(string.IsNullOrEmpty(selectedPlaylist))
             {
                 return;
@@ -101,6 +102,7 @@ namespace MediaPlayer
                     foreach (string file in openFileDialog.FileNames)
                     {
                         PlaylistManager.AddFileToPlaylist(selectedPlaylist, file);
+                        PlaylistManager.LoadPlaylist();
                     }
                     PlaylistManager.SavePlaylist();
                 }
@@ -110,9 +112,7 @@ namespace MediaPlayer
             cm.Items.Add(renameItem);
             cm.Items.Add(addFileItem);
 
-            cm.IsOpen = true;
-
-            
+            cm.IsOpen = true;       
         }
 
         private void playlist_lbox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -120,24 +120,23 @@ namespace MediaPlayer
             string selectedPlaylist = playlist_lbox.SelectedItem as string;
             if (!string.IsNullOrEmpty(selectedPlaylist) && PlaylistManager.Playlist.ContainsKey(selectedPlaylist))
             {
-                currentPlaylist = selectedPlaylist;
-                fileList_lbox.ItemsSource = PlaylistManager.Playlist[selectedPlaylist];
+                var fileItems = PlaylistManager.Playlist[selectedPlaylist].Select(file => new FileItem {Name =  Path.GetFileNameWithoutExtension(file), Path = file }).ToList();
+                fileList_lbox.ItemsSource = fileItems;
+                fileList_lbox.DisplayMemberPath = "Name";
             }
         }
 
         private void fileList_lbox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            if(fileList_lbox.SelectedItems == null) { return; }
-            else
-            {
-                string selectedFile = fileList_lbox.SelectedItem as string;
-                if (!string.IsNullOrEmpty(selectedFile))
+            
+                var selectedFile = fileList_lbox.SelectedItem as FileItem;
+            string path = selectedFile.Path;
+            if (!string.IsNullOrEmpty(path))
                 {
-                    MessageBox.Show(selectedFile);
-                    MainPage mainPage = new MainPage(selectedFile);
+                    MessageBox.Show(path);
+                    MainPage mainPage = new MainPage(path);
                     this.NavigationService.Navigate(mainPage);
-                }
-            }         
+                }                 
         }
     }
 }

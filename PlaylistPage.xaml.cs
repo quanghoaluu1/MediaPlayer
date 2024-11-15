@@ -32,16 +32,25 @@ namespace MediaPlayer
         {
             string playlistName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name of the playlist", "New Playlist", "Playlist Name");
 
-            if (!string.IsNullOrEmpty(playlistName) && !PlaylistItems.Contains(playlistName))
+            if (playlistName == "")
             {
-                PlaylistItems.Add(playlistName);
-                PlaylistManager.Playlist.Add(playlistName, new List<string>());
-                PlaylistManager.SavePlaylist();
+                return;
             }
-            else
+
+            if (string.IsNullOrWhiteSpace(playlistName))
             {
-                MessageBox.Show("Playlist name already exists or is empty");
+                MessageBox.Show("Playlist can't be empty");
+                return;
             }
+            if ( PlaylistItems.Contains(playlistName))
+            {
+                MessageBox.Show("Playlist name already exists");
+                return;
+            }
+          
+            PlaylistItems.Add(playlistName);
+            PlaylistManager.Playlist.Add(playlistName, new List<string>());
+            PlaylistManager.SavePlaylist();
 
         }
 
@@ -101,8 +110,14 @@ namespace MediaPlayer
                 {
                     foreach (string file in openFileDialog.FileNames)
                     {
+                        if (GetFilesFromPlaylist(selectedPlaylist).Contains(file))
+                        {
+                            MessageBox.Show("File already existed");
+                            return;
+                        }
                         PlaylistManager.AddFileToPlaylist(selectedPlaylist, file);
                         PlaylistManager.LoadPlaylist();
+                        LoadItemInPlaylist(selectedPlaylist);
                     }
                     PlaylistManager.SavePlaylist();
                 }
@@ -113,6 +128,22 @@ namespace MediaPlayer
             cm.Items.Add(addFileItem);
 
             cm.IsOpen = true;       
+        }
+
+        private void LoadItemInPlaylist(string selectedPlaylist)
+        {
+            selectedPlaylist = playlist_lbox.SelectedItem as string;
+            if (!string.IsNullOrEmpty(selectedPlaylist) && PlaylistManager.Playlist.ContainsKey(selectedPlaylist))
+            {
+                var fileItems = PlaylistManager.Playlist[selectedPlaylist].Select(file => new FileItem { Name = Path.GetFileNameWithoutExtension(file), Path = file }).ToList();
+                fileList_lbox.ItemsSource = fileItems;
+                fileList_lbox.DisplayMemberPath = "Name";
+            }
+        }
+
+        private List<string> GetFilesFromPlaylist(string selectedPlaylist)
+        {
+            return PlaylistManager.Playlist[selectedPlaylist];
         }
 
         private void playlist_lbox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -128,15 +159,18 @@ namespace MediaPlayer
 
         private void fileList_lbox_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            
-                var selectedFile = fileList_lbox.SelectedItem as FileItem;
+            var selectedFile = fileList_lbox.SelectedItem as FileItem;
+                if(selectedFile == null)
+            {
+                return;
+            }
             string path = selectedFile.Path;
             if (!string.IsNullOrEmpty(path))
-                {
-                    MessageBox.Show(path);
-                    MainPage mainPage = new MainPage(path);
-                    this.NavigationService.Navigate(mainPage);
-                }                 
+            { 
+                MessageBox.Show(path);
+                MainPage mainPage = new MainPage(path);
+                this.NavigationService.Navigate(mainPage);
+            }                
         }
     }
 }

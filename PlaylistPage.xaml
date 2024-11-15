@@ -15,13 +15,13 @@
         <ListBox x:Name="playlist_lbox" d:ItemsSource="{Binding playlistItems}" Margin="0,60,766,0" MouseRightButtonUp="playlist_lbox_MouseRightButtonUp" MouseLeftButtonUp="playlist_lbox_MouseLeftButtonUp">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding}" Foreground="White" FontSize="20" FontWeight="Bold" Margin="0,0,0,0" TextWrapping="Wrap"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         
         <!--Items in playlist-->
-        <ListBox x:Name="fileList_lbox" MouseLeftButtonUp="fileList_lbox_MouseLeftButtonUp" Margin="239,60,10,0"/>
+        <ListBox x:Name="fileList_lbox" MouseLeftButtonUp="fileList_lbox_MouseLeftButtonUp" Margin="239,60,10,0" Foreground="White"/>
 
         <!--Return button-->
         <Button x:Name="return_btn" Content="Return" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Height="55" Width="75" Click="return_btn_Click"/>

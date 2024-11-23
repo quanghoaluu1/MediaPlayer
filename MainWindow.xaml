@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="666" Width="1008
+        Title="SpideyMP" Height="666" Width="1008
         " Background="#FF222121"  WindowStartupLocation="CenterScreen">
 
 

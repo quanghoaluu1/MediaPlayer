@@ -43,8 +43,6 @@ namespace MediaPlayer
                 mediaPlayer.Visibility = Visibility.Collapsed;
                 image_audioImage.Visibility = Visibility.Visible;
 
-
-
                 mediaPlayer.Play();
             }
             else if (fileExtension == ".mp4")

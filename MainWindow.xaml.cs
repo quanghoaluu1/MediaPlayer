@@ -7,12 +7,23 @@ namespace MediaPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        // public MainWindow()
+        // {
+        //   
+        // }
+
+        public MainWindow(string filePath)
         {
             InitializeComponent();
-            mainFrame.Navigate(new MainPage());
-
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                mainFrame.Navigate(new MainPage(filePath));
+            }
+            else
+            {
+                mainFrame.Navigate(new MainPage());
+            }
+           
         }
-
     }
 }
